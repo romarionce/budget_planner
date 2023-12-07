@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-import '../modules/home/home_binding.dart';
-import '../modules/home/home_view.dart';
+import '../modules/main/main_binding.dart';
+import '../modules/main/main_view.dart';
 import '../modules/onboard/onboard_binding.dart';
 import '../modules/onboard/onboard_view.dart';
 
@@ -14,9 +14,9 @@ class AppPages {
 
   static final routes = [
     GetPage(
-      name: _Paths.HOME,
-      page: () => const HomeView(),
-      binding: HomeBinding(),
+      name: _Paths.MAIN,
+      page: () => const MainView(),
+      binding: MainBinding(),
     ),
     GetPage(
       name: _Paths.ONBOARD,

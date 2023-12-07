@@ -1,3 +1,4 @@
+import 'package:budget_planner/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -46,7 +47,7 @@ class OnboardView extends GetView<OnboardController> {
                     width: double.infinity,
                     padding: const EdgeInsets.only(top: 20, bottom: 60),
                     child: FilledButton(
-                        onPressed: () {},
+                        onPressed: () => Get.toNamed(Routes.MAIN),
                         child: Text(
                           "Continue",
                           style:
