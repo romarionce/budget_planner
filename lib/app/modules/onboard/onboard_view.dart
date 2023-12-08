@@ -47,7 +47,7 @@ class OnboardView extends GetView<OnboardController> {
                     width: double.infinity,
                     padding: const EdgeInsets.only(top: 20, bottom: 60),
                     child: FilledButton(
-                        onPressed: () => Get.toNamed(Routes.MAIN),
+                        onPressed: controller.toMainPage,
                         child: Text(
                           "Continue",
                           style:
