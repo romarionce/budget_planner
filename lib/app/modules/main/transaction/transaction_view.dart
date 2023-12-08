@@ -8,7 +8,7 @@ class TransactionPage extends GetView<TransactionController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('TransactionPage')),
+        appBar: AppBar(title: Text('Budget categories')),
         body: SafeArea(child: Text('TransactionController')));
   }
 }
