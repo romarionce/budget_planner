@@ -8,6 +8,8 @@ class ThemeService extends GetxService {
   late ThemeMode themeMode;
   final _storageService = StorageService.to;
 
+  bool get isLight => themeMode == ThemeMode.light;
+
   Future<void> switchTheme() async {
     var newMode =
         themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;

@@ -1,5 +1,6 @@
 import 'package:budget_planner/app/core/theme.dart';
 import 'package:budget_planner/app/routes/navigators.dart';
+import 'package:budget_planner/app/services/api_storage.dart';
 import 'package:budget_planner/app/services/storage_service.dart';
 import 'package:budget_planner/app/services/theme_service.dart';
 import 'package:flutter/material.dart';
@@ -27,4 +28,5 @@ void main() async {
 Future<void> initServices() async {
   await Get.putAsync(() => StorageService().init());
   await Get.putAsync(() => ThemeService().init());
+  await Get.putAsync(() => ApiService().init());
 }
