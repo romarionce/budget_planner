@@ -25,16 +25,23 @@ class HomePage extends GetView<HomeController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "You budget for today",
+                  "You budget for month",
                   style: Get.theme.textTheme.bodyLarge,
                 ),
                 Text(
-                  "10 000 \$",
+                  "${(controller.budget.value - controller.expensed.value).toStringAsFixed(2)} \$",
                   style: Get.theme.textTheme.titleLarge,
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8.0),
-                  child: Slide(per: 25, height: 8),
+                Obx(
+                  () => Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Slide(
+                        per: (controller.expensed.value /
+                                controller.budget.value *
+                                100)
+                            .ceil(),
+                        height: 8),
+                  ),
                 ),
                 const SizedBox(height: 20),
                 Container(
@@ -42,16 +49,24 @@ class HomePage extends GetView<HomeController> {
                     color: ColorsApp.grey2.withOpacity(.3),
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      var category = controller.listCategories[index];
-                      return CategoryTile(category: category);
-                    },
-                    itemCount: controller.listCategories.length,
-                    shrinkWrap: true,
-                  ),
+                  child: Obx(() => ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          var category = controller.listCategories.value[index];
+                          var spent = controller.exp(category.id);
+                          var transactions =
+                              controller.transactions(category.id);
+                          return CategoryTile(
+                            category: category,
+                            spent: spent,
+                            transactions: transactions,
+                          );
+                        },
+                        itemCount: controller.listCategories.value.length,
+                        shrinkWrap: true,
+                      )),
                 ),
+                const SizedBox(height: 30),
                 Obx(() {
                   if (controller.expenses.isNotEmpty) {
                     return ListView.builder(

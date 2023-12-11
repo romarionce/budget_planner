@@ -22,6 +22,10 @@ class ApiService extends GetxService {
   List<CategoryExpense> get getCategoryExpenses =>
       _storage.getCategoryExpense();
 
+  double get expensed => getExpenses.fold(
+      0.0, (previousValue, element) => previousValue + element.price);
+  double get budget => getCategoryExpenses.fold(0, (t, s) => t + s.max);
+
   Future<void> removeCategoryExpense(String id) =>
       _storage.removeCategoryExpense(id);
 

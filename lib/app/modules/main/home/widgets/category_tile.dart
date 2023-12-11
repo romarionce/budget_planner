@@ -11,9 +11,15 @@ class CategoryTile extends StatelessWidget {
   const CategoryTile({
     super.key,
     required this.category,
+    this.spent,
+    this.transactions,
+    this.budget,
   });
 
   final CategoryExpense category;
+  final double? spent;
+  final int? transactions;
+  final double? budget;
 
   @override
   Widget build(BuildContext context) {
@@ -46,12 +52,13 @@ class CategoryTile extends StatelessWidget {
                   category.name,
                   style: const TextStyle(),
                 ),
-                Text(
-                  '0 transactions',
-                  style: Get.theme.textTheme.labelSmall!.copyWith(
-                    color: ColorsApp.grey2,
+                if (transactions != null)
+                  Text(
+                    '$transactions transactions',
+                    style: Get.theme.textTheme.labelSmall!.copyWith(
+                      color: ColorsApp.grey2,
+                    ),
                   ),
-                ),
               ],
             ),
           ),
@@ -59,22 +66,26 @@ class CategoryTile extends StatelessWidget {
             flex: 1,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                const Slide(per: 70),
+                if (spent != null)
+                  Slide(per: (((spent ?? 0) / category.max) * 100).ceil()),
                 const SizedBox(height: 5),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text('0 \$ spent',
-                        style: Get.theme.textTheme.labelSmall!
-                            .copyWith(color: ColorsApp.grey2)),
-                    const Spacer(),
-                    Text('${category.max} \$',
-                        style: Get.theme.textTheme.labelSmall!
-                            .copyWith(color: ColorsApp.grey2)),
-                  ],
-                )
+                if (budget != null) Text("$budget \$"),
+                if (spent != null)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text('$spent \$ spent',
+                          style: Get.theme.textTheme.labelSmall!
+                              .copyWith(color: ColorsApp.grey2)),
+                      const Spacer(),
+                      Text('${category.max} \$',
+                          style: Get.theme.textTheme.labelSmall!
+                              .copyWith(color: ColorsApp.grey2)),
+                    ],
+                  )
               ],
             ),
           )
