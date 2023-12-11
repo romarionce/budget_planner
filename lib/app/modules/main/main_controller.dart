@@ -17,10 +17,10 @@ class MainController extends GetxController {
   ];
 
   List<PageItem> pageItems = [
-    (icon: "home", label: 'Home'),
-    (icon: "transaction", label: 'Categories'),
-    (icon: "income", label: 'Income & Expenses'),
-    (icon: "settings", label: 'Settings'),
+    (icon: "home", label: 'Iniciar'),
+    (icon: "transaction", label: 'Categorías'),
+    (icon: "income", label: 'Ingresos y gastos'),
+    (icon: "settings", label: 'Ajustes'),
   ];
 }
 

@@ -16,17 +16,17 @@ class SettingsPage extends GetView<SettingsController> {
           child: Column(
             children: [
               SettingsTile(
-                  fun: () {}, asset: 'share', text: "Share with friends"),
+                  fun: () {}, asset: 'share', text: "Compartir con amigos"),
               SettingsTile(
                   fun: controller.switchTheme,
                   asset: 'theme',
-                  text: "Switch theme"),
+                  text: "Cambiar tema"),
               SettingsTile(
                   fun: () {}, asset: 'rate', text: "Rate in the App Store"),
               SettingsTile(
                   fun: controller.clearStorage,
                   asset: 'logout',
-                  text: "Clear app data"),
+                  text: "Califica en la App Store"),
             ],
           ),
         )));
