@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ColorsApp {
@@ -36,6 +35,19 @@ class AppTheme {
             enableFeedback: true,
             elevation: 1,
             type: BottomNavigationBarType.fixed),
+        inputDecorationTheme: InputDecorationTheme(
+          filled: false,
+          fillColor: ColorsApp.grey2.withOpacity(.4),
+          contentPadding: const EdgeInsets.all(16),
+          isDense: true,
+          border: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: ColorsApp.mainText,
+              width: 1,
+            ),
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
       );
 
   static ColorScheme _getColorScheme(int index) => ColorScheme.fromSeed(

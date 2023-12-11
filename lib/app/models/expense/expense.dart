@@ -5,7 +5,12 @@ part 'expense.g.dart';
 
 @freezed
 class Expense with _$Expense {
-  factory Expense() = _Expense;
+  factory Expense(
+    String id,
+    String categoryId,
+    DateTime date,
+    double price,
+  ) = _Expense;
 
   factory Expense.fromJson(Map<String, dynamic> json) =>
       _$ExpenseFromJson(json);

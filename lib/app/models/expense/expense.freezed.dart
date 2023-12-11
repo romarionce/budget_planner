@@ -20,13 +20,22 @@ Expense _$ExpenseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Expense {
+  String get id => throw _privateConstructorUsedError;
+  String get categoryId => throw _privateConstructorUsedError;
+  DateTime get date => throw _privateConstructorUsedError;
+  double get price => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ExpenseCopyWith<Expense> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $ExpenseCopyWith<$Res> {
   factory $ExpenseCopyWith(Expense value, $Res Function(Expense) then) =
       _$ExpenseCopyWithImpl<$Res, Expense>;
+  @useResult
+  $Res call({String id, String categoryId, DateTime date, double price});
 }
 
 /// @nodoc
@@ -38,13 +47,44 @@ class _$ExpenseCopyWithImpl<$Res, $Val extends Expense>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? categoryId = null,
+    Object? date = null,
+    Object? price = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      categoryId: null == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as String,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as double,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$ExpenseImplCopyWith<$Res> {
+abstract class _$$ExpenseImplCopyWith<$Res> implements $ExpenseCopyWith<$Res> {
   factory _$$ExpenseImplCopyWith(
           _$ExpenseImpl value, $Res Function(_$ExpenseImpl) then) =
       __$$ExpenseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String id, String categoryId, DateTime date, double price});
 }
 
 /// @nodoc
@@ -54,30 +94,79 @@ class __$$ExpenseImplCopyWithImpl<$Res>
   __$$ExpenseImplCopyWithImpl(
       _$ExpenseImpl _value, $Res Function(_$ExpenseImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? categoryId = null,
+    Object? date = null,
+    Object? price = null,
+  }) {
+    return _then(_$ExpenseImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$ExpenseImpl implements _Expense {
-  _$ExpenseImpl();
+  _$ExpenseImpl(this.id, this.categoryId, this.date, this.price);
 
   factory _$ExpenseImpl.fromJson(Map<String, dynamic> json) =>
       _$$ExpenseImplFromJson(json);
 
   @override
+  final String id;
+  @override
+  final String categoryId;
+  @override
+  final DateTime date;
+  @override
+  final double price;
+
+  @override
   String toString() {
-    return 'Expense()';
+    return 'Expense(id: $id, categoryId: $categoryId, date: $date, price: $price)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ExpenseImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ExpenseImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.categoryId, categoryId) ||
+                other.categoryId == categoryId) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.price, price) || other.price == price));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, id, categoryId, date, price);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ExpenseImplCopyWith<_$ExpenseImpl> get copyWith =>
+      __$$ExpenseImplCopyWithImpl<_$ExpenseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -88,7 +177,21 @@ class _$ExpenseImpl implements _Expense {
 }
 
 abstract class _Expense implements Expense {
-  factory _Expense() = _$ExpenseImpl;
+  factory _Expense(final String id, final String categoryId,
+      final DateTime date, final double price) = _$ExpenseImpl;
 
   factory _Expense.fromJson(Map<String, dynamic> json) = _$ExpenseImpl.fromJson;
+
+  @override
+  String get id;
+  @override
+  String get categoryId;
+  @override
+  DateTime get date;
+  @override
+  double get price;
+  @override
+  @JsonKey(ignore: true)
+  _$$ExpenseImplCopyWith<_$ExpenseImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
