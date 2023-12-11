@@ -31,13 +31,13 @@ class OnboardView extends GetView<OnboardController> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    'Let\'s Achieve Financial Success Together',
+                    'Logremos el éxito financiero juntos',
                     style: tTheme.displaySmall!.copyWith(
                         fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'Become a financial expert on the go! Bid farewell to financial uncertainty!',
+                    '¡Conviértete en un experto financiero mientras viajas! ¡Adiós a la incertidumbre financiera!',
                     style: tTheme.titleMedium!.copyWith(
                       fontWeight: FontWeight.w100,
                       color: Colors.white,
@@ -49,7 +49,7 @@ class OnboardView extends GetView<OnboardController> {
                     child: FilledButton(
                         onPressed: controller.toMainPage,
                         child: Text(
-                          "Continue",
+                          "Continuar",
                           style:
                               tTheme.titleMedium!.copyWith(color: Colors.green),
                         )),
@@ -57,10 +57,11 @@ class OnboardView extends GetView<OnboardController> {
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Terms of use",
+                      Text("Condiciones de uso",
                           style: TextStyle(color: Colors.white)),
                       Text('  |  ', style: TextStyle(color: Colors.white)),
-                      Text("Data usage", style: TextStyle(color: Colors.white)),
+                      Text("Uso de datos",
+                          style: TextStyle(color: Colors.white)),
                     ],
                   )
                 ],

@@ -59,14 +59,13 @@ class StorageService extends GetxService {
 
     if (categoriesExpense.values.isEmpty) {
       var futures = [
-        CategoryExpense('0', 'Food', 'food', Colors.amber.value, 150),
-        CategoryExpense('1', 'Drinks', 'drinks', Colors.red.value, 150),
-        CategoryExpense('2', 'Shop', 'shop', Colors.green.value, 150),
-        CategoryExpense('3', 'Transport', 'transport', Colors.blue.value, 150),
-        CategoryExpense('4', 'House', 'home',
-            const Color.fromARGB(255, 222, 33, 243).value, 150),
-        CategoryExpense('5', 'Enterteiment', 'rate', Colors.black.value, 250),
-        CategoryExpense('6', 'Taxes', 'share', Colors.brown.value, 150),
+        CategoryExpense('0', 'Alimento', 'food', Colors.amber.value, 150),
+        CategoryExpense('1', 'Bebidas', 'drinks', Colors.red.value, 150),
+        CategoryExpense('2', 'Comercio', 'shop', Colors.green.value, 150),
+        CategoryExpense('3', 'Transporte', 'transport', Colors.blue.value, 150),
+        CategoryExpense('4', 'Casa', 'home', Colors.deepOrange.value, 150),
+        CategoryExpense('5', 'Ocio', 'rate', Colors.black.value, 250),
+        CategoryExpense('6', 'Impuestos', 'share', Colors.brown.value, 150),
       ].map((e) => addCategoryExpense(e));
       await Future.wait(futures);
     }

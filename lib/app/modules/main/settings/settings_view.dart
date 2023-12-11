@@ -9,7 +9,7 @@ class SettingsPage extends GetView<SettingsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Settings')),
+        appBar: AppBar(title: const Text('Ajustes')),
         body: SafeArea(
             child: Padding(
           padding: const EdgeInsets.all(16.0),

@@ -16,7 +16,7 @@ class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Your budget')),
+      appBar: AppBar(title: const Text('Su presupuesto')),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -25,7 +25,7 @@ class HomePage extends GetView<HomeController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "You budget for month",
+                  "Tu presupuesto para el mes",
                   style: Get.theme.textTheme.bodyLarge,
                 ),
                 Text(

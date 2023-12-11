@@ -10,7 +10,7 @@ class TransactionPage extends GetView<TransactionController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Categories')),
+      appBar: AppBar(title: const Text('Categorias')),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

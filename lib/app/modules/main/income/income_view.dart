@@ -12,7 +12,7 @@ class IncomePage extends GetView<IncomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Add transaction')),
+      appBar: AppBar(title: const Text('Agregar transacción')),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -57,7 +57,7 @@ class IncomePage extends GetView<IncomeController> {
                 ),
                 const SizedBox(height: 30),
                 Text(
-                  "Enter amount",
+                  "Ingrese la cantidad",
                   style: Get.theme.textTheme.titleLarge!.copyWith(fontSize: 18),
                 ),
                 TextField(
@@ -78,7 +78,7 @@ class IncomePage extends GetView<IncomeController> {
                 ),
                 const SizedBox(height: 30),
                 Text(
-                  "Date",
+                  "Fecha",
                   style: Get.theme.textTheme.titleLarge!.copyWith(fontSize: 18),
                 ),
                 const SizedBox(height: 10),
@@ -97,7 +97,7 @@ class IncomePage extends GetView<IncomeController> {
                                       ? Colors.black
                                       : Colors.transparent,
                                 )),
-                            child: const Text("Today"),
+                            child: const Text("Hoy"),
                           ),
                         ),
                         const SizedBox(
@@ -116,7 +116,7 @@ class IncomePage extends GetView<IncomeController> {
                                       ? Colors.black
                                       : Colors.transparent,
                                 )),
-                            child: const Text("Yesterday"),
+                            child: const Text("Ayer"),
                           ),
                         ),
                       ],
@@ -125,7 +125,7 @@ class IncomePage extends GetView<IncomeController> {
                   height: 20,
                 ),
                 Text(
-                  "Category",
+                  "Categoría",
                   style: Get.theme.textTheme.titleLarge!.copyWith(fontSize: 18),
                 ),
                 const SizedBox(height: 10),
@@ -183,7 +183,7 @@ class IncomePage extends GetView<IncomeController> {
                           backgroundColor: Colors.redAccent,
                           foregroundColor: Colors.white,
                         ),
-                        label: const Text('Reset'),
+                        label: const Text('Reiniciar'),
                       ),
                     ),
                     const SizedBox(width: 10),
@@ -197,7 +197,7 @@ class IncomePage extends GetView<IncomeController> {
                           backgroundColor: ColorsApp.main,
                           foregroundColor: Colors.white,
                         ),
-                        label: const Text('Add transaction'),
+                        label: const Text('Agregar transacción'),
                       ),
                     ),
                   ],

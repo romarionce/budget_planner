@@ -54,7 +54,7 @@ class CategoryTile extends StatelessWidget {
                 ),
                 if (transactions != null)
                   Text(
-                    '$transactions transactions',
+                    '$transactions actas',
                     style: Get.theme.textTheme.labelSmall!.copyWith(
                       color: ColorsApp.grey2,
                     ),
@@ -77,7 +77,7 @@ class CategoryTile extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text('$spent \$ spent',
+                      Text('$spent \$ gastado',
                           style: Get.theme.textTheme.labelSmall!
                               .copyWith(color: ColorsApp.grey2)),
                       const Spacer(),
