@@ -28,12 +28,16 @@ class IncomePage extends GetView<IncomeController> {
                       indicatorSize: const Size.fromWidth(150),
                       current: controller.curVal,
                       values: const [0, 1],
-                      // onChanged: (value) => controller.curVal = value,
+                      onChanged: (value) {
+                        controller.curVal = value;
+                        controller.activeCat = 0;
+                      },
                       iconBuilder: (value) {
                         var isActive = value == controller.curVal;
                         return Text(
                           controller.items[value],
                           style: TextStyle(
+                              fontSize: 12,
                               color: isActive
                                   ? Colors.white
                                   : const Color.fromARGB(255, 109, 109, 109)),
@@ -47,7 +51,7 @@ class IncomePage extends GetView<IncomeController> {
                           const BoxShadow(
                             color: Colors.black12,
                             spreadRadius: 1,
-                            blurRadius: 5,
+                            blurRadius: 3,
                             offset: Offset(0, 1.5),
                           ),
                         ],
@@ -58,8 +62,12 @@ class IncomePage extends GetView<IncomeController> {
                 const SizedBox(height: 30),
                 Text(
                   "Ingrese la cantidad",
-                  style: Get.theme.textTheme.titleLarge!.copyWith(fontSize: 18),
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge!
+                      .copyWith(fontSize: 18),
                 ),
+                const SizedBox(height: 10),
                 TextField(
                   keyboardType: TextInputType.number,
                   controller: controller.amountCtrl,
@@ -68,7 +76,7 @@ class IncomePage extends GetView<IncomeController> {
                   decoration: const InputDecoration(
                     prefixIcon: IconButton(
                       icon: Text(
-                        "\$",
+                        "€",
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold),
                       ),
@@ -79,7 +87,10 @@ class IncomePage extends GetView<IncomeController> {
                 const SizedBox(height: 30),
                 Text(
                   "Fecha",
-                  style: Get.theme.textTheme.titleLarge!.copyWith(fontSize: 18),
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge!
+                      .copyWith(fontSize: 18),
                 ),
                 const SizedBox(height: 10),
                 Obx(() => Row(
@@ -124,54 +135,92 @@ class IncomePage extends GetView<IncomeController> {
                 const SizedBox(
                   height: 20,
                 ),
-                Text(
-                  "Categoría",
-                  style: Get.theme.textTheme.titleLarge!.copyWith(fontSize: 18),
-                ),
+                Obx(() => Text(
+                      "Categoría: ${controller.curVal == 0 ? ApiService.to.getCategoryIncomes[controller.activeCat].name : ApiService.to.getCategoryExpenses[controller.activeCat].name}",
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleLarge!
+                          .copyWith(fontSize: 18),
+                    )),
                 const SizedBox(height: 10),
-                Container(
-                  constraints: const BoxConstraints(
-                    maxHeight: 150,
-                  ),
-                  width: 400,
-                  child: GridView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: ApiService.to.getCategoryExpenses.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 6,
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 10,
-                      childAspectRatio: 1,
-                    ),
-                    itemBuilder: (context, index) {
-                      return Obx(() {
-                        var category = ApiService.to.getCategoryExpenses[index];
-                        var isActive = controller.activeCat == index;
-                        return InkWell(
-                          borderRadius: BorderRadius.circular(8),
-                          onTap: () {
-                            controller.activeCat = index;
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                              color: Color(category.color).withOpacity(.2),
-                              borderRadius: BorderRadius.circular(8),
-                              border: isActive
-                                  ? Border.all(color: Color(category.color))
-                                  : null,
-                            ),
-                            child: SvgPicture.asset(
-                              'assets/${category.icon}.svg',
-                              color: Color(category.color),
-                            ),
-                          ),
-                        );
-                      });
-                    },
-                  ),
-                ),
+                Obx(() => Container(
+                      constraints: const BoxConstraints(
+                        maxHeight: 150,
+                      ),
+                      width: 400,
+                      child: GridView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: controller.curVal == 0
+                            ? ApiService.to.getCategoryIncomes.length
+                            : ApiService.to.getCategoryExpenses.length,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 6,
+                          crossAxisSpacing: 20,
+                          mainAxisSpacing: 10,
+                          childAspectRatio: 1,
+                        ),
+                        itemBuilder: (context, index) {
+                          if (controller.curVal == 0) {
+                            return Obx(() {
+                              var category =
+                                  ApiService.to.getCategoryIncomes[index];
+                              var isActive = controller.activeCat == index;
+                              return InkWell(
+                                borderRadius: BorderRadius.circular(8),
+                                onTap: () {
+                                  controller.activeCat = index;
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(16),
+                                  decoration: BoxDecoration(
+                                    color:
+                                        Color(category.color).withOpacity(.2),
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: isActive
+                                        ? Border.all(
+                                            color: Color(category.color))
+                                        : null,
+                                  ),
+                                  child: SvgPicture.asset(
+                                    'assets/${category.icon}.svg',
+                                    color: Color(category.color),
+                                  ),
+                                ),
+                              );
+                            });
+                          } else {
+                            return Obx(() {
+                              var category =
+                                  ApiService.to.getCategoryExpenses[index];
+                              var isActive = controller.activeCat == index;
+                              return InkWell(
+                                borderRadius: BorderRadius.circular(8),
+                                onTap: () {
+                                  controller.activeCat = index;
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(16),
+                                  decoration: BoxDecoration(
+                                    color:
+                                        Color(category.color).withOpacity(.2),
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: isActive
+                                        ? Border.all(
+                                            color: Color(category.color))
+                                        : null,
+                                  ),
+                                  child: SvgPicture.asset(
+                                    'assets/${category.icon}.svg',
+                                    color: Color(category.color),
+                                  ),
+                                ),
+                              );
+                            });
+                          }
+                        },
+                      ),
+                    )),
                 Row(
                   children: [
                     Expanded(

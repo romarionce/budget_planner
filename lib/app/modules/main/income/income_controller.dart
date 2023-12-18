@@ -1,6 +1,8 @@
 import 'package:budget_planner/app/models/expense/expense.dart';
+import 'package:budget_planner/app/models/income/income.dart';
 import 'package:budget_planner/app/modules/main/home/home_controller.dart';
 import 'package:budget_planner/app/modules/main/main_controller.dart';
+import 'package:budget_planner/app/modules/main/transaction/transaction_controller.dart';
 import 'package:budget_planner/app/services/api_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,7 +13,7 @@ class IncomeController extends GetxController {
   int get curVal => _curVal.value;
   set curVal(int i) => _curVal.value = i;
 
-  List<String> items = ['Income', 'Expenses'];
+  List<String> items = ['Ingreso', 'Gastos'];
 
   final date = DateTime.now().obs;
   final _isToday = true.obs;
@@ -41,15 +43,27 @@ class IncomeController extends GetxController {
   }
 
   void addTransaction() async {
-    var newExpense = Expense(
+    if (curVal == 1) {
+      var newExpense = Expense(
         DateTime.now().millisecondsSinceEpoch.toString(),
         ApiService.to.getCategoryExpenses[activeCat].id,
         date.value,
-        double.tryParse(amountCtrl.text) ?? 100);
-    await ApiService.to.addExpense(newExpense);
+        double.tryParse(amountCtrl.text) ?? 100,
+      );
+      await ApiService.to.addExpense(newExpense);
+    } else {
+      var newIncome = Income(
+        DateTime.now().millisecondsSinceEpoch.toString(),
+        ApiService.to.getCategoryIncomes[activeCat].id,
+        date.value,
+        double.tryParse(amountCtrl.text) ?? 100,
+      );
+      await ApiService.to.addIncome(newIncome);
+    }
     var ctrl = Get.find<MainController>();
     ctrl.activeTab = 0;
     Get.find<HomeController>().update();
+    Get.find<TransactionController>().update();
     reset();
   }
 }

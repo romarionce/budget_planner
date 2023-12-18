@@ -15,12 +15,13 @@ void main() async {
   runApp(
     GetMaterialApp(
       title: "Application",
-      theme: AppTheme.light,
-      darkTheme: AppTheme.dark,
-      themeMode: ThemeService.to.themeMode,
+      theme: AppTheme.light(),
+      darkTheme: AppTheme.dark(),
+      themeMode: ThemeService.to.themeMode.value,
       navigatorKey: Get.nestedKey(NavigatorKeys.mainNavigator.index),
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
+      locale: const Locale('es', 'ES'),
     ),
   );
 }

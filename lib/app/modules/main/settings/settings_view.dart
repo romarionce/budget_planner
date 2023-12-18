@@ -22,11 +22,11 @@ class SettingsPage extends GetView<SettingsController> {
                   asset: 'theme',
                   text: "Cambiar tema"),
               SettingsTile(
-                  fun: () {}, asset: 'rate', text: "Rate in the App Store"),
+                  fun: () {}, asset: 'rate', text: "Califica en la App Store"),
               SettingsTile(
                   fun: controller.clearStorage,
                   asset: 'logout',
-                  text: "Califica en la App Store"),
+                  text: "Reiniciar datos"),
             ],
           ),
         )));

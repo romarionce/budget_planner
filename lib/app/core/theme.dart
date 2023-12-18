@@ -9,12 +9,17 @@ class ColorsApp {
 }
 
 class AppTheme {
-  static ThemeData _base(int index) => ThemeData.from(
-          colorScheme: _getColorScheme(index),
-          textTheme: GoogleFonts.robotoTextTheme().copyWith(
-              titleLarge: const TextStyle(
-            fontWeight: FontWeight.bold,
-          ))).copyWith(
+  static ThemeData _base(int index) => ThemeData(
+        colorScheme: _getColorScheme(index),
+        textTheme: GoogleFonts.robotoTextTheme(index == 0
+            ? ThemeData.dark().textTheme
+            : ThemeData.light().textTheme),
+        // textTheme: GoogleFonts.robotoTextTheme().copyWith(
+        //   titleLarge: const TextStyle(
+        //     fontWeight: FontWeight.bold,
+        //   ),
+        // ),
+      ).copyWith(
         appBarTheme: const AppBarTheme(centerTitle: false),
         filledButtonTheme: FilledButtonThemeData(
           style: FilledButton.styleFrom(
@@ -26,6 +31,11 @@ class AppTheme {
             ),
           ),
         ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ))),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
             // selectedItemColor: ColorsApp.main,
             // unselectedItemColor: ColorsApp.grey2,
@@ -51,11 +61,13 @@ class AppTheme {
       );
 
   static ColorScheme _getColorScheme(int index) => ColorScheme.fromSeed(
-      seedColor: ColorsApp.main, brightness: Brightness.values[index]);
+        seedColor: ColorsApp.main,
+        brightness: Brightness.values[index],
+      );
 
-  static ThemeData get light => _base(0);
+  static ThemeData light() => _base(0);
 
-  static ThemeData get dark => _base(1);
+  static ThemeData dark() => _base(1);
 
   static ThemeData get s => ThemeData(
         appBarTheme: const AppBarTheme(centerTitle: false),

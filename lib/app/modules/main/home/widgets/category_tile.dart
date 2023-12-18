@@ -43,22 +43,20 @@ class CategoryTile extends StatelessWidget {
             ),
           ),
           Container(
-            width: 100,
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            width: 120,
+            padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   category.name,
-                  style: const TextStyle(),
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 if (transactions != null)
                   Text(
                     '$transactions actas',
-                    style: Get.theme.textTheme.labelSmall!.copyWith(
-                      color: ColorsApp.grey2,
-                    ),
+                    style: Theme.of(context).textTheme.labelSmall,
                   ),
               ],
             ),
@@ -72,19 +70,19 @@ class CategoryTile extends StatelessWidget {
                 if (spent != null)
                   Slide(per: (((spent ?? 0) / category.max) * 100).ceil()),
                 const SizedBox(height: 5),
-                if (budget != null) Text("$budget \$"),
+                if (budget != null)
+                  Text("${budget.toString().replaceFirst('.', ',')} €"),
                 if (spent != null)
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text('$spent \$ gastado',
-                          style: Get.theme.textTheme.labelSmall!
-                              .copyWith(color: ColorsApp.grey2)),
+                      Text(
+                          '${spent.toString().replaceFirst('.', ',')} € gastado',
+                          style: Get.theme.textTheme.labelSmall!),
                       const Spacer(),
-                      Text('${category.max} \$',
-                          style: Get.theme.textTheme.labelSmall!
-                              .copyWith(color: ColorsApp.grey2)),
+                      Text('${category.max} €',
+                          style: Get.theme.textTheme.labelSmall!),
                     ],
                   )
               ],
